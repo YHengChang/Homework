@@ -10,11 +10,11 @@ namespace Models.Service
 {
     public class LoadService
     {
-        public static List<Station> FindStation()
+        public static List<Station> FindStation(string path)
         {
             List<Station> stations = new List<Station>();
 
-            var xml = XElement.Load(@"http://opendata.epa.gov.tw/ws/Data/UV/?format=xml");
+            var xml = XElement.Load(path);
 
             var UV = xml.Descendants("Data");
 
@@ -37,22 +37,11 @@ namespace Models.Service
                 station.WGS84Lat = WGS84Lat;
                 station.PublishTime = PublishTime;
 
-                Console.Write(station.SiteName + "  ");
-                Console.Write(station.UVI + "  ");
-                Console.Write(station.PublishAgency + "  ");
-                Console.Write(station.County + "  ");
-                Console.Write(station.WGS84Lon + "  ");
-                Console.Write(station.WGS84Lat + "  ");
-                Console.WriteLine(station.PublishTime);
-
-
+                stations.Add(station); //set
             });
-
-
 
             return stations;
         }
-
 
     }
 }
