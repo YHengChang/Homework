@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.Model;
 using Models.Service;
+using Models.Repository;
 
 namespace MainConsole
 {
@@ -13,8 +14,14 @@ namespace MainConsole
         static void Main(string[] args)
         {
             var LoadService = new LoadService();
+            var db = new DB_Repository();
             var UV = LoadService.FindStation(@"http://opendata.epa.gov.tw/ws/Data/UV/?format=xml");
 
+            
+            UV.ToList().ForEach(uv =>
+            {
+                db.Create(uv);
+            });
 
 
             //test

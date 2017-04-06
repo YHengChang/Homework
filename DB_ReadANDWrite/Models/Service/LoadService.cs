@@ -43,5 +43,19 @@ namespace Models.Service
             return stations;
         }
 
+
+        public static void InsertDB(List<Station> stations)
+        {
+
+
+
+        }
+
+
     }
+
+
+
+
+
 }
