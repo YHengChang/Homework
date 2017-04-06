@@ -44,14 +44,6 @@ namespace Models.Service
         }
 
 
-        public static void InsertDB(List<Station> stations)
-        {
-
-
-
-        }
-
-
     }
 
 

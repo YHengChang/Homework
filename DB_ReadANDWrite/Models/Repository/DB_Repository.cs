@@ -24,12 +24,44 @@ namespace Models.Repository
             ", station.SiteName, station.UVI, station.PublishAgency, station.County, station.WGS84Lon, station.WGS84Lat, station.PublishTime);
 
 
-
             command.ExecuteNonQuery();
             connection.Close();
 
 
         }
+
+        public List<Model.Station> FindALL()
+        {
+            var result = new List<Model.Station>();
+            var connection = new System.Data.SqlClient.SqlConnection(connectstring);
+            connection.Open();
+            var command = new System.Data.SqlClient.SqlCommand("", connection);
+            command.CommandText = @"Select * from Tablee";
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                Model.Station item = new Model.Station();
+
+
+                item.SiteName = reader["SiteName"].ToString();
+                item.UVI = reader["UVI"].ToString();
+                item.PublishAgency = reader["PublishAgency"].ToString();
+                item.County = reader["County"].ToString();
+                item.WGS84Lon = reader["WGS84Lon"].ToString();
+                item.WGS84Lat = reader["WGS84Lat"].ToString();
+                item.PublishTime = reader["PublishTime"].ToString();
+
+
+                result.Add(item);
+            }
+
+            connection.Close();
+
+            return result;
+        }
+
 
     }
 }
