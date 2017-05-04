@@ -17,13 +17,19 @@ namespace MainConsole
             var db = new DB_Repository();
             var UV = LoadService.FindStation(@"http://opendata.epa.gov.tw/ws/Data/UV/?format=xml");
 
+            
+            UV.ToList().ForEach(uv =>
+            {
+                db.Delete();
+            });
+            
 
-            /*
+            
             UV.ToList().ForEach(uv =>
             {
                 db.Create(uv);
             });
-            */
+            
 
             var stations = db.FindALL();
 

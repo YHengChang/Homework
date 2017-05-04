@@ -8,7 +8,7 @@ namespace Models.Repository
 {
     public class DB_Repository
     {
-        private const string connectstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\HengChang\Desktop\Homework\DB_ReadANDWrite\MainConsole\AppData\UVdb.mdf;Integrated Security=True";
+        private const string connectstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\HengChang\Desktop\Homework\2. DB_ReadANDWrite\MainConsole\AppData\UVdb.mdf;Integrated Security=True";
 
         public void Create(Model.Station station)
         {
@@ -23,8 +23,11 @@ namespace Models.Repository
             VALUES (N'{0}',N'{1}',N'{2}',N'{3}',N'{4}',N'{5}',N'{6}')
             ", station.SiteName, station.UVI, station.PublishAgency, station.County, station.WGS84Lon, station.WGS84Lat, station.PublishTime);
 
+
             command.ExecuteNonQuery();
             connection.Close();
+
+
         }
 
         public void Delete()
@@ -35,10 +38,13 @@ namespace Models.Repository
             var command = new System.Data.SqlClient.SqlCommand("", connection);
 
 
-            command.CommandText = string.Format(@"DELETE FROM table_name");
+            command.CommandText = string.Format(@"DELETE FROM Tablee");
+
 
             command.ExecuteNonQuery();
             connection.Close();
+
+
         }
 
         public List<Model.Station> FindALL()
